@@ -1,0 +1,35 @@
+import java.util.*;
+
+public class A {
+    public static void main(String[] args) {
+        int arr[] = {10, 5, 10, 15, 10, 5};
+        int n = arr.length;
+
+        Map<Integer, Integer> map = new HashMap<>();
+
+        // Count frequencies
+        for (int i = 0; i < n; i++) {
+            map.put(arr[i], map.getOrDefault(arr[i], 0) + 1);
+        }
+
+        // First element as starting point
+        int maxElem = arr[0], minElem = arr[0];
+        int maxFreq = map.get(arr[0]), minFreq = map.get(arr[0]);
+
+        // Find highest and lowest frequency
+        for (int key : map.keySet()) {
+            int freq = map.get(key);
+
+            if (freq > maxFreq) {
+                maxFreq = freq;
+                maxElem = key;
+            }
+            if (freq < minFreq) {
+                minFreq = freq;
+                minElem = key;
+            }
+        }
+
+        System.out.println(maxElem + " " + minElem);
+    }
+}
